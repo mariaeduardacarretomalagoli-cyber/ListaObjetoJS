@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Controle de Empréstimos</title>
+</head>
+<body>
+
+    <h1>Controle de Empréstimos</h1>
+    <script>
+        var controle = {
+
+            equipamentos: [],
+            emprestimos: [],
+
+            cadastrarEquipamento: function(codigo, nome) {
+
+                var equipamento = {
+                    codigo: codigo,
+                    nome: nome,
+                    situacao: "Disponível"
+                };
+
+                this.equipamentos.push(equipamento);
+            },
+
+            emprestar: function(codigo, pessoa, data) {
+
+                for (var equipamento of this.equipamentos) {
+
+                    if (equipamento.codigo == codigo) {
+
+                        if (equipamento.situacao == "Emprestado") {
+                            console.log("Equipamento já está emprestado!");
+                            return;
+                        }
+
+                        equipamento.situacao = "Emprestado";
+
+                        var emprestimo = {
+                            codigo: codigo,
+                            pessoa: pessoa,
+                            data: data,
+                            situacao: "Não devolvido"
+                        };
+
+                        this.emprestimos.push(emprestimo);
+
+                        console.log("Empréstimo realizado!");
+                        return;
+                    }
+                }
+
+                console.log("Equipamento não encontrado!");
+            },
+
+            devolver: function(codigo) {
+
+                for (var equipamento of this.equipamentos) {
+
+                    if (equipamento.codigo == codigo) {
+                        equipamento.situacao = "Disponível";
+                    }
+                }
+
+                for (var emprestimo of this.emprestimos) {
+
+                    if (emprestimo.codigo == codigo) {
+                        emprestimo.situacao = "Devolvido";
+                    }
+                }
+
+                console.log("Devolução realizada!");
+            },
+
+            mostrarDisponiveis: function() {
+
+                for (var equipamento of this.equipamentos) {
+
+                    if (equipamento.situacao == "Disponível") {
+                        console.log(equipamento);
+                    }
+                }
+            },
+
+            mostrarEmprestimos: function() {
+
+                for (var emprestimo of this.emprestimos) {
+
+                    if (emprestimo.situacao == "Não devolvido") {
+                        console.log(emprestimo);
+                    }
+                }
+            }
+        };
+        controle.cadastrarEquipamento(1, "Notebook");
+        controle.cadastrarEquipamento(2, "Projetor");
+        controle.cadastrarEquipamento(3, "Mouse");
+        controle.emprestar(1, "Matheus", "01/10/2026");
+        controle.mostrarDisponiveis();
+        controle.mostrarEmprestimos();
+        controle.devolver(1);
+        controle.mostrarDisponiveis();
+    </script>
+
+</body>
+</html>

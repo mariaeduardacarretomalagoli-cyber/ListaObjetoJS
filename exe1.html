@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var temperatura = {
+
+            media: 0,
+
+            listasemana: [],
+
+    verificarTemperatura(){
+        var pergunta = Number(prompt("Digite a temperatura"))
+        if (pergunta < -50 || pergunta > 60  ){
+            console.log("Não é possivel fazer com esses valores!")
+        }
+        
+        else{
+            this.listasemana.push(pergunta)
+        }
+
+
+        this.listasemana.push({
+            pergunta: pergunta
+        })
+    },
+
+    listarTemperatura(){
+        for(var listasemana of this.listasemana){
+            console.log(listasemana.pergunta)
+        }
+    },
+
+    calcularMaior(){
+        var maior = -50
+        var menor = 60
+        for (var pergunta of this.listasemana){
+            if (pergunta.pergunta > maior){
+                maior = pergunta.pergunta
+            }
+            
+            if (pergunta.pergunta < menor){
+                menor = pergunta.pergunta
+            }
+        }
+        console.log(maior + " graus é a maior temperatura")
+        console.log(menor + " graus é a menor temperatura")
+    },
+
+    calcularMedia(){
+      var soma = 0
+      for (var numero of this.listasemana){
+        soma += numero.pergunta
+      }
+        media = soma / this.listasemana.length
+        this.media = media
+      
+      console.log("A média é: " + media)
+
+      
+    },
+
+    acimaMedia(){
+        var acima = []
+        for(var pergunta of this.listasemana){
+            if(pergunta.pergunta > this.media){
+                acima.push(pergunta.pergunta)
+                
+            }
+        }
+        console.log(acima + " esse")
+    },
+
+
+}
+
+
+        temperatura.verificarTemperatura()
+        temperatura.verificarTemperatura()
+        temperatura.verificarTemperatura()
+        temperatura.verificarTemperatura()
+        temperatura.verificarTemperatura()
+        temperatura.verificarTemperatura()
+        temperatura.verificarTemperatura()
+        temperatura.listarTemperatura()
+        temperatura.calcularMaior()
+        temperatura.calcularMedia()
+        temperatura.acimaMedia()
+        
+       
+            
+        
+
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var turma = {
+            nome: '',
+            totalAulas: 0,
+            estudantes: [],
+
+            cadastrarturma() {
+                this.nome = prompt('Digite o nome da turma')
+                this.totalAulas = Number(prompt('Digite a quantidade total de aulas'))
+            },
+
+            cadastrarestudante() {
+                var nome = prompt('Digite o nome do NOVO estudante')
+
+                this.estudantes.push({
+                    nome: nome,
+                    presencas: 0,
+                    faltas: 0
+                })
+
+                alert('Estudante cadastrado')
+            },
+
+            registrarPresenca() {
+                var nome = prompt('Digite o nome do estudante que tera PRESENCA')
+
+                for (var estudante of this.estudantes) {
+
+                    if (estudante.nome == nome) {
+
+                        if (estudante.presencas + estudante.faltas < this.totalAulas) {
+                            estudante.presencas = estudante.presencas + 1
+                            alert('Presenca registrada')
+                        }
+
+                        else {
+                            alert('Nao e possivel registrar mais presencas. A quantidade total de aulas ja foi atingida')
+                        }
+
+                        return
+                    }
+                }
+
+                alert('Esse estudante nao existe')
+            },
+
+            registrarFalta() {
+                var nome = prompt('Digite o nome do estudante que tera FALTA')
+
+                for (var estudante of this.estudantes) {
+
+                    if (estudante.nome == nome) {
+
+                        if (estudante.presencas + estudante.faltas < this.totalAulas) {
+                            estudante.faltas = estudante.faltas + 1
+                            alert('Falta registrada')
+                        }
+
+                        else {
+                            alert('Nao e possivel registrar mais faltas. A quantidade total de aulas ja foi atingida')
+                        }
+
+                        return
+                    }
+                }
+
+                alert('Esse estudante nao existe')
+            },
+
+            calcularfrequencia() {
+                var nome = prompt('Digite o nome do estudante para CALCULAR A FREQUENCIA')
+
+                for (var estudante of this.estudantes) {
+
+                    if (estudante.nome == nome) {
+
+                        var frequencia = (estudante.presencas / this.totalAulas) * 100
+
+                        alert('A frequencia de ' + nome + ' e: ' + frequencia + '%')
+                        return
+                    }
+                }
+
+                alert('Esse estudante nao existe')
+            },
+
+            mostrarbaixa() {
+                var resultado = ''
+
+                for (var estudante of this.estudantes) {
+
+                    var frequencia = (estudante.presencas / this.totalAulas) * 100
+
+                    if (frequencia < 75) {
+                        resultado = resultado + estudante.nome + ' - ' + frequencia + '%'
+                    }
+                }
+
+                if (resultado != '') {
+                    alert('Estudantes com frequencia inferior a 75%:' + resultado)
+                }
+
+                else {
+                    alert('Não existem estudantes com frequencia inferior a 75%')
+                }
+            }
+        }
+
+
+        turma.cadastrarturma()
+
+        turma.cadastrarestudante()
+        turma.cadastrarestudante()
+
+        turma.registrarPresenca()
+        turma.registrarPresenca()
+        turma.registrarFalta()
+        turma.registrarPresenca()
+        turma.registrarFalta()
+        turma.registrarPresenca()
+        turma.registrarFalta()
+
+        turma.calcularfrequencia()
+
+        turma.mostrarbaixa()
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

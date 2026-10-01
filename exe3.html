@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var cadastrar = {
+            contatos: [],
+            contatosfavoritos: [],
+
+            cadastrarnome() {
+                this.nome = prompt('Digite o nome do cadastro')
+                this.contatos.push(this.nome)
+            },
+
+            cadastrartelefone() {
+                this.telefone = prompt('Digite o telefone')
+
+                if (this.contatos.includes(this.telefone)) {
+                    alert('Ja existe um telefone com esse contato')
+                }
+                else {
+                    this.contatos.push(this.telefone)
+                }
+            },
+
+            marcarfavorito() {
+                var nomefavorito = prompt('Esse contato e favorito? Digite sim ou nao')
+
+                if (nomefavorito == 'sim') {
+                    this.contatosfavoritos.push(this.nome)
+                    alert('Contato marcado como favorito')
+                }
+
+                else {
+                    alert('Ok')
+                }
+            },
+
+
+            buscarnome() {
+                var pergunta = prompt('Voce gostaria de procurar um nome')
+
+                if (pergunta == 'sim') {
+                    var nome2 = prompt('Digite o nome que voce quer procurar')
+
+                    if (this.contatos.includes(nome2)) {
+                        alert('O nome que voce esta procurando e esse contato: ' + nome2)
+                    }
+
+                    else {
+                        alert('Esse nome nao existe nos seus contatos')
+                    }
+                }
+
+                else {
+                    alert('Ok')
+                }
+            },
+
+            buscartelefone() {
+                var pergunta2 = prompt('Voce gostaria de alterar o telefone')
+
+                if (pergunta2 == 'sim') {
+                    var novotelefone = prompt('Digite o novo telefone')
+
+                    this.telefone = novotelefone
+
+                    alert('Telefone alterado para: ' + this.telefone)
+                }
+
+                else {
+                    alert('ok')
+                }
+            },
+
+            remover() {
+
+                var pergutaremove = prompt('Voce deseja remover algum contato')
+
+                if (pergutaremove == 'sim') {
+                    var nomeremover = prompt('Digite o nome do contato que deseja remover')
+
+                    if (this.contatos.includes(nomeremover)) {
+                        var posicao = this.contatos.indexOf(nomeremover)
+
+                        this.contatos.splice(posicao, 1)
+
+                        alert('Contato removido')
+                    }
+
+                    else {
+                        alert('Esse contato nao existe')
+                    }
+                }
+
+                else {
+                    alert('Ok')
+                }
+            },
+
+            mostrarfavoritos() {
+                if (this.contatosfavoritos.length > 0) {
+                    alert('Contatos favoritos: ' + this.contatosfavoritos)
+                }
+
+                else {
+                    alert('Não existem contatos favoritos')
+                }
+            }
+        }
+
+        cadastrar.cadastrarnome()
+        cadastrar.cadastrartelefone()
+
+        cadastrar.marcarfavorito()
+        cadastrar.mostrarfavoritos()
+
+        cadastrar.buscarnome()
+        cadastrar.buscartelefone()
+
+        cadastrar.remover()
+
+        cadastrar.cadastrarnome()
+        cadastrar.cadastrartelefone()
+
+        cadastrar.marcarfavorito()
+        cadastrar.mostrarfavoritos()
+
+        cadastrar.buscarnome()
+        cadastrar.buscartelefone()
+
+        cadastrar.remover()
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

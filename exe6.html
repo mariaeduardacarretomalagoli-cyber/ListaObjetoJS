@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var estacionamento = {
+            placa: "",
+            modelo: "",
+            horarioEntrada: "",
+            horarioSaida: "",
+            horario: 0,
+            vagas: 8,
+            listaVeiculos: [],
+
+            entrada(){
+                var entrada = prompt("Digite o horário de entrada do veículo: ")
+                this.horarioEntrada = entrada
+
+                var placa = prompt("Digite a placa do veículo: ")
+                this.placa = placa
+
+                var modelo = prompt("Digite o modelo do veículo: ")
+                this.modelo = modelo
+            },
+
+            saida(){
+                var saida = prompt("Digite o horário de saída do veículo: ")
+                this.horarioSaida = saida
+            },
+
+
+            verificarPlaca(){
+                if (this.listaVeiculos.includes(this.placa)) {
+                    alert("O veículo já está no estacionamento.")
+                } else {
+                    this.listaVeiculos.push(this.placa)
+                    alert("Veículo registrado com sucesso!")
+                }   
+            },
+
+            verificarVagas(){
+                if (this.listaVeiculos.length < this.vagas) {
+                    alert("Ainda há vagas disponíveis.")
+                } else {
+                    alert("Estacionamento lotado!")
+                }
+            },
+
+            calcularValor(){
+                if((this.horarioSaida - this.horarioEntrada) <= 1){
+                    alert("O valor a ser pago é de R$ 8,00")
+                } else if((this.horarioSaida - this.horarioEntrada) > 1 && (this.horarioSaida - this.horarioEntrada) <= 2){
+                    alert("O valor a ser pago é de R$ 16,00")
+                } else if((this.horarioSaida - this.horarioEntrada) > 2 && (this.horarioSaida - this.horarioEntrada) <= 3){
+                    alert("O valor a ser pago é de R$ 24,00")
+                } else {
+                    alert("O valor a ser pago é de R$ 32,00")
+
+                }
+            }
+        }
+        estacionamento.entrada()
+        estacionamento.saida()
+        estacionamento.verificarPlaca()
+        estacionamento.calcularValor()
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Campeonato</title>
+</head>
+<body>
+
+    <h1>Organizador de Campeonato</h1>
+
+    <script>
+
+        var campeonato = {
+
+            equipes: [],
+            partidas: [],
+
+            cadastrarEquipe: function(nome) {
+
+                var equipe = {
+                    nome: nome,
+                    pontos: 0,
+                    vitorias: 0,
+                    empates: 0,
+                    derrotas: 0,
+                    golsMarcados: 0,
+                    golsSofridos: 0
+                };
+
+                this.equipes.push(equipe);
+            },
+
+            registrarPartida: function(nome1, nome2, gols1, gols2) {
+
+                if (nome1 == nome2) {
+                    console.log("Uma equipe não pode jogar contra ela mesma!");
+                    return;
+                }
+
+                var equipe1;
+                var equipe2;
+
+                for (var equipe of this.equipes) {
+
+                    if (equipe.nome == nome1) {
+                        equipe1 = equipe;
+                    }
+
+                    if (equipe.nome == nome2) {
+                        equipe2 = equipe;
+                    }
+                }
+
+                equipe1.golsMarcados += gols1;
+                equipe1.golsSofridos += gols2;
+
+                equipe2.golsMarcados += gols2;
+                equipe2.golsSofridos += gols1;
+
+                if (gols1 > gols2) {
+
+                    equipe1.pontos += 3;
+                    equipe1.vitorias++;
+
+                    equipe2.derrotas++;
+
+                } else if (gols2 > gols1) {
+
+                    equipe2.pontos += 3;
+                    equipe2.vitorias++;
+
+                    equipe1.derrotas++;
+
+                } else {
+
+                    equipe1.pontos++;
+                    equipe1.empates++;
+
+                    equipe2.pontos++;
+                    equipe2.empates++;
+                }
+
+                console.log("Partida registrada!");
+            },
+
+            saldoGols: function(equipe) {
+
+                return equipe.golsMarcados - equipe.golsSofridos;
+            },
+
+            mostrarClassificacao: function() {
+
+                console.log("CLASSIFICAÇÃO");
+
+                for (var equipe of this.equipes) {
+
+                    console.log(
+                        equipe.nome +
+                        " - " +
+                        equipe.pontos +
+                        " pontos - Saldo: " +
+                        this.saldoGols(equipe)
+                    );
+                }
+            },
+
+            melhorAtaque: function() {
+
+                var melhor = this.equipes[0];
+
+                for (var equipe of this.equipes) {
+
+                    if (equipe.golsMarcados > melhor.golsMarcados) {
+                        melhor = equipe;
+                    }
+                }
+
+                console.log(
+                    "Melhor ataque: " +
+                    melhor.nome
+                );
+            }
+        };
+
+
+        campeonato.cadastrarEquipe("Brasil");
+        campeonato.cadastrarEquipe("Argentina");
+        campeonato.cadastrarEquipe("Uruguai");
+
+
+        campeonato.registrarPartida(
+            "Brasil",
+            "Argentina",
+            2,
+            1
+        );
+
+        campeonato.registrarPartida(
+            "Argentina",
+            "Uruguai",
+            1,
+            1
+        );
+
+        campeonato.registrarPartida(
+            "Brasil",
+            "Uruguai",
+            3,
+            0
+        );
+
+
+        campeonato.mostrarClassificacao();
+
+        campeonato.melhorAtaque();
+
+
+        campeonato.registrarPartida(
+            "Brasil",
+            "Brasil",
+            2,
+            2
+        );
+
+    </script>
+</body>
+</html>

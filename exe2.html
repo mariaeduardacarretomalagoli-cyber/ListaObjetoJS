@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+         var maquina = {
+            quantidade_agua: 0,
+            quantidade_cafe: 0,
+            quantidade_copos: 0,
+            total_cafe: 0,
+
+            repor(){
+                var repor_agua = Number(prompt("Quantos de água vc deseja repor?  "))
+                quantidade_agua = repor_agua
+            },
+            depoisRepor(){
+                alert("Quantidade de água: " + quantidade_agua + "ml")
+            },
+
+
+            reporCafe(){
+                var repor_cafe = Number(prompt("Quantos de café vc deseja repor?  "))
+                quantidade_cafe = repor_cafe
+            },
+
+            depoisReporCafe(){
+                alert("Quantidade de café: " + quantidade_cafe + "g")
+            },
+
+
+            reporCopos(){
+                var repor_copos = Number(prompt("Quantos de copos vc deseja repor?  "))
+                quantidade_copos = repor_copos
+            },
+
+            depoisReporCopos(){
+                alert("Quantidade de copos: " + quantidade_copos + " copos")
+            },
+
+
+            verificar(){
+                maquina.depoisRepor()
+                maquina.depoisReporCafe()
+                maquina.depoisReporCopos()
+            },
+                
+
+            prepararCafe(){
+                if (quantidade_agua >= 200 && quantidade_cafe >= 15 && quantidade_copos >= 1){
+                    quantidade_agua = 200
+                    quantidade_cafe = 15
+                    quantidade_copos = 1
+                    total_cafe = 1
+                    alert("Café preparado com sucesso!")
+                }
+                else{
+                    alert("Não é possivel preparar o café, verifique os itens!")
+                }
+                
+
+            }
+
+        }
+        maquina.repor()
+        maquina.depoisRepor()
+        maquina.reporCafe()
+        maquina.depoisReporCafe()
+        maquina.reporCopos()
+        maquina.depoisReporCopos()
+        maquina.prepararCafe()
+        maquina.verificar()
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
